@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+debug_chat.html - Minimal Chat Bubble Debugger
+
+Why: Validate basic chat UI behaviors (DOM fallback) in isolation for debugging and regression checks.
+Where: Static page under /static usable without starting the full Flask app routes.
+How: Creates simple bubbles, tests scrolling/visibility, and logs interactions.
+
+Connects to:
+    - static/js/components/chat-fade.js (pattern reference)
+    - static/css/style.css (when imported in larger context)
+-->
+<html>
+<head>
+    <title>Chat Debug</title>
+    <style>
+        #chat-log { 
+            border: 2px solid red; 
+            height: 200px; 
+            overflow-y: auto; 
+            padding: 10px;
+        }
+        .chat-message { 
+            background: #333; 
+            color: white; 
+            margin: 5px 0; 
+            padding: 10px;
+        }
+        .chat-message.show { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div id="chat-log">Chat log container</div>
+    <button onclick="testMessage()">Test Message</button>
+    
+    <script>
+        function createChatBubble(text, sender) {
+            console.log('createChatBubble called with:', text, sender);
+            const chatLog = document.getElementById('chat-log');
+            
+            if (!chatLog) {
+                console.error('No chat log container');
+                return;
+            }
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message ' + sender;
+            messageDiv.innerHTML = '<div>' + text + '</div>';
+            
+            chatLog.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.classList.add('show');
+            }, 100);
+            
+            console.log('Message added to DOM');
+        }
+        
+        function testMessage() {
+            console.log('Testing message creation...');
+            createChatBubble('Test message', 'user');
+        }
+        
+        window.createChatBubble = createChatBubble;
+        console.log('Debug chat loaded');
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+"""
+Unit tests for UI tooltip functionality
+
+Why: Ensures all UI buttons have consistent, accessible tooltip implementations for better user experience and compliance.
+Where: Used in automated test suite to validate HTML templates in Clever's frontend.
+How: Parses HTML files, checks for title attributes on buttons, and enforces tooltip consistency across templates.
+
+Connects to:
+    - templates/: HTML templates being tested for tooltip compliance
+    - BeautifulSoup: HTML parsing and validation library
+    - UI accessibility standards: Tooltip consistency requirements
+    - pytest: Testing framework and assertions
+"""
+
+import re
+from pathlib import Path
+
+import pytest
+from bs4 import BeautifulSoup
+
+
+class TestUITooltips:
+    """
+    Test suite for UI tooltip consistency and accessibility
+
+    Why: Validates that all UI buttons have tooltips and that tooltip patterns are consistent for accessibility and usability.
+    Where: Used in CI and local test runs to enforce frontend standards.
+    How: Uses BeautifulSoup to parse HTML templates and pytest for assertions.
+    """
+
+    @pytest.fixture
+    def template_files(self):
+        """
+        Get all HTML template files
+
+        Why: Provides a list of HTML templates to be checked for tooltips
+        Where: Used by all test methods in this suite
+        How: Uses pathlib to glob for .html files in the templates directory
+        """
+        templates_dir = Path(__file__).resolve().parents[1] / "templates"
+        return list(templates_dir.glob("*.html"))
+
+    def parse_html_file(self, file_path):
+        """
+        Parse HTML file and return BeautifulSoup object
+
+        Why: Enables HTML parsing for tooltip validation
+        Where: Used by all test methods to inspect button elements
+        How: Reads file and parses with BeautifulSoup
+        """
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        return BeautifulSoup(content, "html.parser")
+
+    def test_button_tooltips_exist(self, template_files):
+        """
+        Test that all buttons have tooltips (title attribute)
+
+        Why: Ensures every button is accessible and provides context to users
+        Where: Used in CI and local test runs for frontend compliance
+        How: Checks for missing title attributes and reports failures
+        """
+        missing_tooltips = []
+
+        for template_file in template_files:
+            soup = self.parse_html_file(template_file)
+            buttons = soup.find_all("button")
+
+            for button in buttons:
+                button_id = button.get("id", "unnamed")
+                button_class = button.get("class")
+                if button_class is None:
+                    button_class = ""
+                elif isinstance(button_class, list):
+                    button_class = " ".join(button_class)
+                else:
+                    button_class = str(button_class)
+                button_text = button.get_text(strip=True)
+
+                if not button.get("title"):
+                    missing_tooltips.append(
+                        {
+                            "file": template_file.name,
+                            "button_id": button_id,
+                            "button_class": button_class,
+                            "button_text": button_text,
+                            "button_html": str(button),
+                        }
+                    )
+
+        assert len(missing_tooltips) == 0, f"Buttons missing tooltips: {missing_tooltips}"
+
+    def test_tooltip_consistency(self, template_files):
+        """
+        Test that similar buttons have consistent tooltip patterns
+
+        Why: Enforces UI consistency for better usability and maintainability
+        Where: Used in automated test suite for frontend standards
+        How: Compares tooltip text across similar buttons and reports inconsistencies
+        """
+        button_patterns = {}
+
+        for template_file in template_files:
+            soup = self.parse_html_file(template_file)
+            buttons = soup.find_all("button")
+
+            for button in buttons:
+                button_text = button.get_text(strip=True)
+                button_id = button.get("id")
+                title = button.get("title", "")
+
+                # Group buttons by common patterns
+                if (
+                    "send" in str(button_id).lower()
+                    or "⬆" in button_text
+                    or "✨" in button_text
+                    or "send" in button_text.lower()
+                ):
+                    pattern_key = "send_button"
+                elif "mic" in str(button_id).lower() or "🎤" in button_text:
+                    pattern_key = "mic_button"
+                elif (
+                    "close" in str(button_id).lower()
+                    or "×" in button_text
+                    or "&times;" in str(button)
+                ):
+                    pattern_key = "close_button"
+                else:
+                    pattern_key = f"other_{button_id or 'unnamed'}"
+
+                if pattern_key not in button_patterns:
+                    button_patterns[pattern_key] = []
+
+                button_patterns[pattern_key].append(
+                    {
+                        "file": template_file.name,
+                        "title": title,
+                        "button_id": button_id,
+                        "button_text": button_text,
+                    }
+                )
+
+        # Check consistency within each pattern group
+        inconsistencies = []
+        for pattern, buttons in button_patterns.items():
+            if len(buttons) > 1:
+                titles = [b["title"].lower() for b in buttons if b["title"]]
+                if len(set(titles)) > 1:  # More than one unique title
+                    inconsistencies.append(
+                        {
+                            "pattern": pattern,
+                            "buttons": buttons,
+                            "unique_titles": list(set(titles)),
+                        }
+                    )
+
+        # Allow some variation in wording but check for major inconsistencies
+        significant_inconsistencies = []
+        for inconsistency in inconsistencies:
+            titles = inconsistency["unique_titles"]
+            # Check if titles are semantically similar (contain similar keywords)
+            if len(titles) > 1:
+                # For send buttons, expect variations of "send"
+                if inconsistency["pattern"] == "send_button":
+                    if not all("send" in title for title in titles):
+                        significant_inconsistencies.append(inconsistency)
+                # For mic buttons, expect variations of "voice" or "input"
+                elif inconsistency["pattern"] == "mic_button":
+                    if not all(
+                        any(word in title for word in ["voice", "input"]) for title in titles
+                    ):
+                        significant_inconsistencies.append(inconsistency)
+                # For other patterns, just ensure they exist
+                else:
+                    if len([t for t in titles if t.strip()]) == 0:
+                        significant_inconsistencies.append(inconsistency)
+
+        assert (
+            len(significant_inconsistencies) == 0
+        ), f"Significant tooltip inconsistencies: {significant_inconsistencies}"
+
+    def test_accessibility_attributes(self, template_files):
+        """Test that buttons have proper accessibility attributes"""
+        accessibility_issues = []
+
+        for template_file in template_files:
+            soup = self.parse_html_file(template_file)
+            buttons = soup.find_all("button")
+
+            for button in buttons:
+                button_id = button.get("id", "unnamed")
+                issues = []
+
+                # Check for aria-label or descriptive text
+                has_aria_label = button.get("aria-label") is not None
+                has_title = button.get("title") is not None
+
+                # Check if button has text content
+                button_text = button.get_text(strip=True)
+
+                # Icon-only buttons should have aria-label or title
+                is_icon_only = len(button_text) <= 2  # Likely emoji or single character
+
+                if is_icon_only and not (has_aria_label or has_title):
+                    issues.append("Icon-only button missing aria-label or title")
+
+                # Check for proper button type for forms
+                if button.find_parent("form") and not button.get("type"):
+                    issues.append("Button in form missing type attribute")
+
+                if issues:
+                    accessibility_issues.append(
+                        {
+                            "file": template_file.name,
+                            "button_id": button_id,
+                            "button_html": str(button),
+                            "issues": issues,
+                        }
+                    )
+
+        assert len(accessibility_issues) == 0, f"Accessibility issues found: {accessibility_issues}"
+
+    def test_tooltip_content_quality(self, template_files):
+        """Test that tooltip content is descriptive and helpful"""
+        poor_tooltips = []
+
+        for template_file in template_files:
+            soup = self.parse_html_file(template_file)
+            buttons = soup.find_all("button")
+
+            for button in buttons:
+                title = button.get("title", "")
+                button_id = button.get("id", "unnamed")
+
+                if title:
+                    # Convert title to string if it's not already
+                    title_str = str(title) if not isinstance(title, str) else title
+
+                    # Check for minimum length
+                    if len(title_str.strip()) < 3:
+                        poor_tooltips.append(
+                            {
+                                "file": template_file.name,
+                                "button_id": button_id,
+                                "title": title_str,
+                                "issue": "Tooltip too short",
+                            }
+                        )
+
+                    # Check for generic words only
+                    generic_words = ["click", "button", "here", "this"]
+                    if title_str.lower().strip() in generic_words:
+                        poor_tooltips.append(
+                            {
+                                "file": template_file.name,
+                                "button_id": button_id,
+                                "title": title_str,
+                                "issue": "Tooltip too generic",
+                            }
+                        )
+
+                    # Check for proper sentence structure (should start with capital or be descriptive)
+                    if title_str and not (
+                        title_str[0].isupper()
+                        or title_str.lower().startswith(
+                            (
+                                "send",
+                                "create",
+                                "copy",
+                                "download",
+                                "close",
+                                "voice",
+                                "talk",
+                            )
+                        )
+                    ):
+                        poor_tooltips.append(
+                            {
+                                "file": template_file.name,
+                                "button_id": button_id,
+                                "title": title_str,
+                                "issue": "Tooltip should be properly formatted",
+                            }
+                        )
+
+        assert len(poor_tooltips) == 0, f"Poor quality tooltips found: {poor_tooltips}"
+
+    def test_tooltip_html_structure(self, template_files):
+        """Test that tooltips are properly structured in HTML"""
+        html_issues = []
+
+        for template_file in template_files:
+            with open(template_file, "r", encoding="utf-8") as f:
+                content = f.read()
+
+            # Find all button tags with regex to check HTML structure
+            button_pattern = r"<button[^>]*>"
+            buttons = re.findall(button_pattern, content, re.IGNORECASE)
+
+            for button_html in buttons:
+                # Check that title attribute is properly quoted
+                if "title=" in button_html.lower():
+                    # Extract title attribute value
+                    title_match = re.search(r'title=(["\'])(.*?)\1', button_html, re.IGNORECASE)
+                    if not title_match:
+                        # Title exists but not properly quoted
+                        html_issues.append(
+                            {
+                                "file": template_file.name,
+                                "button_html": button_html,
+                                "issue": "Title attribute not properly quoted",
+                            }
+                        )
+                    else:
+                        title_value = title_match.group(2)
+                        # Check for HTML entities in title
+                        if "&" in title_value and not any(
+                            entity in title_value
+                            for entity in ["&amp;", "&lt;", "&gt;", "&quot;", "&#"]
+                        ):
+                            html_issues.append(
+                                {
+                                    "file": template_file.name,
+                                    "button_html": button_html,
+                                    "issue": "Unescaped HTML entities in title",
+                                }
+                            )
+
+        assert len(html_issues) == 0, f"HTML structure issues found: {html_issues}"
+
+
+if __name__ == "__main__":
+    # Run tests directly
+    pytest.main([__file__, "-v"])

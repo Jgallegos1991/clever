@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+test_chat.html - Minimal Chat Endpoint Exercise
+
+Why: Verify /api/chat responses and DOM update logic without loading the full holographic UI.
+Where: Development template for quick manual regression testing of chat flow.
+How: Simple form posting to API, renders replies inline for validation.
+-->
+<html>
+<head>
+    <title>Chat Test</title>
+    <style>
+        body { background: #111; color: white; font-family: Arial; padding: 20px; }
+        #messages { border: 1px solid #333; padding: 10px; height: 300px; overflow-y: auto; margin-bottom: 10px; }
+        #messageInput { width: 300px; padding: 5px; }
+        #sendBtn { padding: 5px 10px; }
+        .message { margin: 5px 0; padding: 5px; border-radius: 5px; }
+        .user { background: #004455; }
+        .clever { background: #440055; }
+    </style>
+</head>
+<body>
+    <h2>Clever Chat Test</h2>
+    <div id="messages"></div>
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button id="sendBtn" title="Send message to Clever">Send</button>
+
+    <script>
+        const messages = document.getElementById('messages');
+        const input = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `message ${sender}`;
+            div.textContent = `${sender.toUpperCase()}: ${text}`;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                addMessage(data.response || 'No response', 'clever');
+            } catch (error) {
+                addMessage(`Error: ${error.message}`, 'system');
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
