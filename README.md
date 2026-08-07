@@ -1,2 +1,0 @@
-# clever
-my personal ai
