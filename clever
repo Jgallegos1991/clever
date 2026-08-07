@@ -1,9 +1,0 @@
-#!/bin/bash
-# Convenience launcher to start Clever with voice interaction enabled.
-# Usage: ensure this script is on your PATH (e.g. symlink to ~/bin) then run `clever`.
-
-set -euo pipefail
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-exec "$SCRIPT_DIR/start_clever.sh" --with-voice "$@"
