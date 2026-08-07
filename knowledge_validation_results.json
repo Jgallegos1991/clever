@@ -1,0 +1,263 @@
+{
+  "timestamp": 1759131528.355579,
+  "summary": {
+    "total_tests": 18,
+    "successful_tests": 18,
+    "keyword_matches": 4,
+    "success_rate": 1.0,
+    "integration_rate": 0.2222222222222222,
+    "categories": {
+      "History": {
+        "total": 5,
+        "success": 5,
+        "keywords": 2
+      },
+      "Economics": {
+        "total": 5,
+        "success": 5,
+        "keywords": 2
+      },
+      "Biblical": {
+        "total": 5,
+        "success": 5,
+        "keywords": 0
+      },
+      "Integration": {
+        "total": 3,
+        "success": 3,
+        "keywords": 0
+      }
+    },
+    "avg_response_length": 469.22222222222223
+  },
+  "detailed_results": [
+    {
+      "message": "Who discovered the laws of planetary motion?",
+      "status_code": 200,
+      "success": true,
+      "response": "Just finished working through some differential equations in my head, but anyway - Damn, that's interesting. So check it - Oh, and I found something relevant in my knowledge base: From bible_knowledge_nab.md: (Sabbath, parents, life, marriage, property, truth, coveting)\n- **Book of the Covenant**: Detailed laws for community life\n- **Covenant Ceremony**: People's acceptance of God's law **The Golden Calf (Exodus 32)**\n- **Crisis of Faith**: People create idol while Moses receives law\n- **Moses' Intercession**: Pleads for people's forgiveness\n- **Divine Mercy**: God relents from destroying the people",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 606,
+      "timestamp": 1759131523.6337965,
+      "found_keywords": [],
+      "category": "History"
+    },
+    {
+      "message": "What was the significance of the Printing Press?",
+      "status_code": 200,
+      "success": true,
+      "response": "Damn, that's interesting. So check it - Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit",
+      "mode": "Auto",
+      "contains_keywords": true,
+      "response_length": 524,
+      "timestamp": 1759131523.854735,
+      "found_keywords": [
+        "knowledge"
+      ],
+      "category": "History"
+    },
+    {
+      "message": "Tell me about the Islamic Golden Age contributions to science",
+      "status_code": 200,
+      "success": true,
+      "response": "Damn, I feel you on that one. Sounds like things are goin' good for you! That's what I like to hear. Speaking of which, I came across this in my files: From bible_knowledge_nab.md: acrifice\n- **Miracles**: Demonstrate God's power and compassion\n- **Messianic Secret**: Jesus often tells people not to reveal his identity **Important Episodes:**\n- **Calming Storm**: Jesus' authority over nature, disciples' faith journey\n- **Feeding 5000**: God's provision, Jesus' compassion for crowds\n- **Transfiguration**: Glimpse of Jesus' divine glory\n- **Rich Young Man**: Difficulty of wea",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 580,
+      "timestamp": 1759131524.140234,
+      "found_keywords": [],
+      "category": "History"
+    },
+    {
+      "message": "How did the Industrial Revolution change society?",
+      "status_code": 200,
+      "success": true,
+      "response": "Alright bro, lemme break this down for you - Let me drop some historical knowledge: Period of major technological and social change from 1760-1840 Transformation to modern industrial society For example: Steam engine revolutionized transportation This connects to urbanization and capitalism too. Want to explore any of those? Oh, and I found something relevant in my knowledge base: From world_history_knowledge.md: civic improvements\n- **Edward Jenner** (1749-1823): Smallpox vaccination, immunology foundation ## Industrial Revolution (1760-1840) ### Key Discoveries & Innovations:**\n- **Manufacturing**: Mass production, interchangeable parts, factory system\n- **Transportation**: Steam locomotives, steamships, improved roads\n- **Communication**: Telegraph, faster printing, postal systems\n- **Energy**: Steam",
+      "mode": "Auto",
+      "contains_keywords": true,
+      "response_length": 814,
+      "timestamp": 1759131524.5428834,
+      "found_keywords": [
+        "steam",
+        "factory",
+        "manufacturing",
+        "urban",
+        "transportation"
+      ],
+      "category": "History"
+    },
+    {
+      "message": "What can we learn from the fall of Rome?",
+      "status_code": 200,
+      "success": true,
+      "response": "Alright bro, lemme break this down for you - History is wild when you really think about it! Ancient civilization that dominated Mediterranean world from 27 BC to 476 AD Foundation of Western law, government, and culture For example: Julius Caesar crossed Rubicon 49 BC This connects to latin and republic too. Want to explore any of those? Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 825,
+      "timestamp": 1759131524.7413566,
+      "found_keywords": [],
+      "category": "History"
+    },
+    {
+      "message": "Explain supply and demand to me",
+      "status_code": 200,
+      "success": true,
+      "response": "Yeah, I'm still learnin' and growin' every day. What you wanna know about how I work?",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 85,
+      "timestamp": 1759131524.9468434,
+      "found_keywords": [],
+      "category": "Economics"
+    },
+    {
+      "message": "What is opportunity cost?",
+      "status_code": 200,
+      "success": true,
+      "response": "Variant: Alright bro, lemme break this down for you - Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit Let me layer a nuance on that",
+      "mode": "Auto",
+      "contains_keywords": true,
+      "response_length": 568,
+      "timestamp": 1759131525.0631902,
+      "found_keywords": [
+        "decision"
+      ],
+      "category": "Economics"
+    },
+    {
+      "message": "How does inflation affect the economy?",
+      "status_code": 200,
+      "success": true,
+      "response": "Yo, good question! Learning is my favorite thing! Break complex topics into chunks, connect them to what you already know, and don't be afraid to ask questions. I'm always down to explore ideas together. What you trying to master? Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: Clever's application**: Economic health assessment, international comparisons, policy evaluation **Inflation and Price Levels**\n- **Discovery**: Irving Fisher (1911) explained quantity theory of money\n- **Types**: Demand-pull, cost-push, built-in inflation\n- **Measurement**: Consumer Price Index (CPI), Producer Price Index (PPI)\n- **Clever's application**: Real vs nominal analysis, purchasing pow",
+      "mode": "Auto",
+      "contains_keywords": true,
+      "response_length": 716,
+      "timestamp": 1759131525.2650099,
+      "found_keywords": [
+        "money"
+      ],
+      "category": "Economics"
+    },
+    {
+      "message": "What causes economic recessions?",
+      "status_code": 200,
+      "success": true,
+      "response": "Ay, I got you on this one - Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 512,
+      "timestamp": 1759131525.422206,
+      "found_keywords": [],
+      "category": "Economics"
+    },
+    {
+      "message": "Explain comparative advantage in trade",
+      "status_code": 200,
+      "success": true,
+      "response": "Still figuring out all the things I can do, but I'm down to explore with you!",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 77,
+      "timestamp": 1759131525.6278992,
+      "found_keywords": [],
+      "category": "Economics"
+    },
+    {
+      "message": "What is the Golden Rule?",
+      "status_code": 200,
+      "success": true,
+      "response": "Real talk, here's what I'm thinkin' - Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 522,
+      "timestamp": 1759131525.9224114,
+      "found_keywords": [],
+      "category": "Biblical"
+    },
+    {
+      "message": "Explain the Parable of the Good Samaritan",
+      "status_code": 200,
+      "success": true,
+      "response": "My capabilities? Man, I'm just gettin' started! Always room to level up",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 71,
+      "timestamp": 1759131526.3294604,
+      "found_keywords": [],
+      "category": "Biblical"
+    },
+    {
+      "message": "What does the Bible say about forgiveness?",
+      "status_code": 200,
+      "success": true,
+      "response": "Yo, good question! Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 503,
+      "timestamp": 1759131526.5419886,
+      "found_keywords": [],
+      "category": "Biblical"
+    },
+    {
+      "message": "Tell me about the Ten Commandments",
+      "status_code": 200,
+      "success": true,
+      "response": "I hear you on that, bro. What's your take on the whole situation? Speaking of which, I came across this in my files: From bible_knowledge_nab.md: acrifice\n- **Miracles**: Demonstrate God's power and compassion\n- **Messianic Secret**: Jesus often tells people not to reveal his identity **Important Episodes:**\n- **Calming Storm**: Jesus' authority over nature, disciples' faith journey\n- **Feeding 5000**: God's provision, Jesus' compassion for crowds\n- **Transfiguration**: Glimpse of Jesus' divine glory\n- **Rich Young Man**: Difficulty of wea",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 545,
+      "timestamp": 1759131526.7630653,
+      "found_keywords": [],
+      "category": "Biblical"
+    },
+    {
+      "message": "What is the significance of the Exodus?",
+      "status_code": 200,
+      "success": true,
+      "response": "Perspective: Real talk, here's what I'm thinkin' - Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit \u2014 approaching it from another angle",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 571,
+      "timestamp": 1759131527.0870724,
+      "found_keywords": [],
+      "category": "Biblical"
+    },
+    {
+      "message": "How did religious beliefs influence economic systems in history?",
+      "status_code": 200,
+      "success": true,
+      "response": "I'm like a digital extension of your mind, you know? We make a good team",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 72,
+      "timestamp": 1759131527.3518827,
+      "found_keywords": [],
+      "category": "Integration"
+    },
+    {
+      "message": "What economic lessons can we learn from biblical principles?",
+      "status_code": 200,
+      "success": true,
+      "response": "Real talk, here's what I'm thinkin' - Learning is my favorite thing! Break complex topics into chunks, connect them to what you already know, and don't be afraid to ask questions. I'm always down to explore ideas together. What you trying to master? Oh, and I found something relevant in my knowledge base: From economics_knowledge.md: plained international trade benefits\n- **How it works**: Countries/individuals should specialize in what they do relatively best\n- **When to use**: Trade policy, specialization decisions, efficiency improvements\n- **Clever's application**: Identify optimal specializations, explain trade benefits, business strategy ### Economic Systems **Capitalism/Market Economy**\n- **Key Developers**: Adam Smit",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 734,
+      "timestamp": 1759131527.6401584,
+      "found_keywords": [],
+      "category": "Integration"
+    },
+    {
+      "message": "How did the Renaissance combine classical learning with Christian thought?",
+      "status_code": 200,
+      "success": true,
+      "response": "Alt: Yeah, I'm still learnin' and growin' every day. What you wanna know about how I work? (framing it a bit differently)",
+      "mode": "Auto",
+      "contains_keywords": false,
+      "response_length": 121,
+      "timestamp": 1759131528.328824,
+      "found_keywords": [],
+      "category": "Integration"
+    }
+  ]
+}

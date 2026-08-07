@@ -1,0 +1,58 @@
+***
+
+```text
+The-Synaptic-Hub/ (Root)
+├── .github/
+│ ├── AGENT_ONBOARDING.md # Mandatory agent checklist
+│ └── copilot-instructions.md # Elite AI system directives
+├── core/
+│ ├── memory_engine.py # Infrastructure: Long-term continuity
+│ ├── nlp_processor.py # Canonical reasoning engine
+│ └── persona.py # Infrastructure: Identity engine
+├── docs/
+│ ├── North_Star.md # MASTER DIRECTIVE (Philosophical)
+│ ├── architecture.md # Deep system design
+│ ├── persona_spec.md # Identity behavior definitions
+│ ├── ui_overview.md # Vessel/Interface specifications
+│ └── synaptic_hub_clever_master_blueprint.md # IPFS-First Master Plan
+├── knowledge/ # Infrastructure: Local context data
+├── kubo/ # Infrastructure: IPFS node implementation
+├── legacy/ # QUARANTINE: Corrupted or deprecated modules
+│ ├── clever_conversation_engine.py
+│ ├── fixer_legacy.py
+│ ├── run_tests_legacy.py
+│ └── start_services.sh
+├── routes/ # Internal system API endpoints
+├── scripts/ # Operational & management scripts
+│ ├── convert_inventory.py
+│ ├── fix_line_lengths.py
+│ └── sync_tools.py
+├── static/ # UI Assets (The Vessel)
+│ ├── css/
+│ └── js/
+│ └── engines/
+│ └── holographic-chamber.js # UI Particle Engine
+├── templates/ # UI HTML structures
+├── tests/ # System validation & testing
+│ ├── final_integration_test.py
+│ └── simplified_integration_test.py
+├── tools/ # GUARDRAILS: Structural integrity tools
+│ ├── auto_code_cleaner_v2.py # Canonical cleaner
+│ ├── diagnostics_check.py # make diagnostics engine
+│ └── why_where_how_audit.py # make audit-why engine
+├── utils/ # Helper functions and shims
+├── AGENTS.md # State awareness & collaboration protocol
+├── app.py # CANONICAL ENTRY: The Digital Brain
+├── database.py # Infrastructure: SQLite management
+├── file-inventory.md # Complete system component catalog
+├── Makefile # Automated guardrails and runners
+├── README.md # Primary onboarding and overview
+└── requirements.txt # Canonical dependencies
+```
+
+### Key Changes Reflected:
+* **Infrastructure Priority:** Files like `persona.py` and `memory_engine.py` are grouped as core infrastructure [1, 2].
+* **Zero Vessel Noise:** All `.backup`, `.pre_jay_patch`, and redundant versions (like `nlp_processor_fixed.py`) have been removed from the canonical tree [Conversation History].
+* **Proper Script Placement:** System management scripts (like `lint_fixer.py`) have been moved into `scripts/` or `tools/` rather than cluttering the root [Conversation History].
+* **Legacy Isolation:** The `legacy/` directory is clearly labeled as a quarantine zone for non-canonical historical artifacts [3].
+* **North Star Integration:** `docs/North_Star.md` is positioned as the first item in documentation to signify its importance as the project's "conscience" [2, 4].

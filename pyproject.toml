@@ -1,0 +1,21 @@
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+include = "\\.pyi?$"
+extend-exclude = """
+(
+  ^\\.git/
+| ^\\.venv/
+| ^venv/
+| ^node_modules/
+| ^dist/
+| ^build/
+| ^kubo/
+| ^legacy/
+| ^codex_legacy$
+)
+"""
+
+[tool.isort]
+profile = "black"
+line_length = 100

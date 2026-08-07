@@ -1,0 +1,27 @@
+{
+  "name": "clever",
+  "version": "1.0.0",
+  "description": "**Last updated:** 2025-09-26   **Status:** Fully Operational Digital Brain Extension",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jgallegos1991/Clever.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jgallegos1991/Clever/issues"
+  },
+  "homepage": "https://github.com/Jgallegos1991/Clever#readme",
+  "dependencies": {
+    "@openai/codex": "^0.46.0"
+  }
+}

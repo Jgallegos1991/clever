@@ -1,0 +1,17 @@
+{
+  "voice_system": {
+    "emergency_mode": true,
+    "memory_limit_mb": 50,
+    "audio_codec": "sof-rt5682",
+    "tts_engine": "espeak",
+    "speech_recognition": "google/sphinx",
+    "microphone_boost": "30dB",
+    "setup_timestamp": "1759204768.2433002"
+  },
+  "device_compliance": {
+    "chrome_os_optimized": true,
+    "memory_budget": "50MB",
+    "cpu_optimization": "Intel Pentium Silver N6000",
+    "audio_hardware": "Google Pirika sof-rt5682"
+  }
+}

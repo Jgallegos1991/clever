@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Basic CLI shim that forwards commands to the running Clever service.
+# Allows overriding host/port in environments where Clever binds to a non-loopback interface.
+
+MESSAGE="$*"
+HOST="${CLEVER_HOST:-127.0.0.1}"
+PORT="${CLEVER_PORT:-5000}"
+
+curl -s -X POST "http://${HOST}:${PORT}/api/chat" \
+     -H "Content-Type: application/json" \
+     -d "{\"message\": \"$MESSAGE\"}" | jq -r '.reply // .response // .text'

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Clever AI
+Comment=Jay's Digital Brain Extension & Cognitive Partnership System
+Exec=gnome-terminal -- bash -c "cd /home/jgallegos1991/Clever && ./start_clever.sh; exec bash"
+Icon=/home/jgallegos1991/Clever/static/clever_icon.png
+Terminal=true
+Categories=Development;Education;Science;
+Keywords=AI;Assistant;Clever;Jay;Digital;Brain;
+StartupNotify=true
+StartupWMClass=clever-ai

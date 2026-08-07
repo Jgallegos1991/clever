@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+simple_canvas_test.html - Simple Canvas & Styling Test
+
+Why: Validate basic canvas rendering and CSS integration quickly.
+Where: Minimal page for verifying device/browser compatibility.
+How: Draws a basic rectangle and exposes the context for manual testing.
+-->
+<html>
+<head>
+    <title>Simple Canvas Test</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0B0F14;
+            color: white;
+            font-family: monospace;
+        }
+        canvas {
+            border: 2px solid cyan;
+            background: rgba(255,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h3>Simple Canvas Test</h3>
+    <canvas id="test" width="400" height="300"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('test');
+        const ctx = canvas.getContext('2d');
+        
+        console.log('Canvas:', canvas);
+        console.log('Context:', ctx);
+        
+        // Simple animation
+        let frame = 0;
+        function animate() {
+            frame++;
+            
+            // Clear
+            ctx.fillStyle = '#0B0F14';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw moving particle
+            ctx.fillStyle = '#00FFFF';
+            ctx.beginPath();
+            const x = 200 + Math.sin(frame * 0.1) * 100;
+            const y = 150 + Math.cos(frame * 0.1) * 50;
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw static particle
+            ctx.fillStyle = '#FF6B9D';
+            ctx.beginPath();
+            ctx.arc(100, 100, 3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        console.log('Animation started');
+    </script>
+</body>
+</html>
