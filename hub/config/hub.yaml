@@ -1,0 +1,37 @@
+services:
+  - name: clever_app
+    cwd: "/home/jgallegos1991/The-Synaptic-Hub/Clever"
+    cmd: ["bash","-lc","source /home/jgallegos1991/Clever/.venv/bin/activate && python app.py --port 5000"]
+    health:
+      type: http
+      url: "http://100.124.203.114:5000/health"
+      interval_sec: 5
+      timeout_sec: 2
+    restart: on-failure
+    backoff: [1, 2, 5, 10]
+
+  - name: clever_voice
+    cwd: "/home/jgallegos1991/The-Synaptic-Hub/Clever"
+    cmd: ["bash","-lc","source /home/jgallegos1991/Clever/.venv/bin/activate && python voice_daemon.py"]
+    health:
+      type: process
+      probe: "voice_daemon.py"
+      interval_sec: 5
+      timeout_sec: 2
+    restart: on-failure
+    backoff: [1, 2, 5, 10]
+
+synapses:
+  ipfs:
+    enabled: false
+    export_interval_min: 0
+  rclone:
+    enabled: false
+    remote: "Drive:"
+    filter_file: "Clever/rclone-filters.txt"
+    include: ["manifests/**","logs/evolution/daily/**","data/memory/exports/**"]
+    schedule: "daily@23:00"
+
+autostart:
+  enabled: true
+  method: cron
