@@ -1,0 +1,44 @@
+{
+  "gateway": "http://127.0.0.1:8081",
+  "pin_sets": [
+    {
+      "name": "core_artifacts",
+      "enabled": true,
+      "recursive": false,
+      "paths": [
+        "CLEVER_MANIFEST.md",
+        "Clever_Cognitive_Map.dot"
+      ]
+    },
+    {
+      "name": "self_reflection_reports",
+      "enabled": true,
+      "recursive": true,
+      "paths": [
+        "logs/self_reflection_reports"
+      ]
+    },
+    {
+      "name": "sync_packages",
+      "enabled": false,
+      "recursive": true,
+      "paths": [
+        "Clever_Sync"
+      ]
+    }
+  ],
+  "remote_pinners": [
+    {
+      "name": "pinata_primary",
+      "type": "pinata",
+      "api_key_env": "PINATA_JWT",
+      "enabled": true
+    },
+    {
+      "name": "web3_storage_backup",
+      "type": "web3.storage",
+      "api_key_env": "WEB3_STORAGE_TOKEN",
+      "enabled": false
+    }
+  ]
+}

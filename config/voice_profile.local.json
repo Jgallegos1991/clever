@@ -1,0 +1,9 @@
+{
+  "engine": "piper",
+  "model": "/home/jgallegos1991/Clever/models/piper/en_US-libritts_r-medium.onnx",
+  "config": "/home/jgallegos1991/Clever/models/piper/en_US-libritts_r-medium.onnx.json",
+  "speed": 0.90,
+  "pitch": 0.94,
+  "humor_level": 0.30,
+  "style": "GeminiWarm"
+}

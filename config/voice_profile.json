@@ -1,0 +1,9 @@
+{
+  "engine": "piper",
+  "model": "models/piper/en_US-default.onnx",
+  "config": "models/piper/en_US-default.json",
+  "pitch": 0.94,
+  "speed": 0.91,
+  "humor_level": 0.30,
+  "style": "GeminiWarm"
+}
