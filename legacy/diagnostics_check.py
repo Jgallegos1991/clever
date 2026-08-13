@@ -4,15 +4,14 @@ Why: Provide a lightweight, offline-safe validation that key architectural
 assertions documented in `docs/copilot_diagnostics.md` are still true in the
 current working tree (offline guard present, single DB reference, diagnostics
 file exists). This acts as an early drift detector before deeper CI.
-Where: Invoked via `make diagnostics` (new Makefile target) and can be wired
-into future pre-commit / CI workflows. Returns non-zero exit when a critical
-rule is violated, enabling automated gating.
+Where: Legacy copy retained for historical compatibility. The canonical checker
+lives in `tools/diagnostics_check.py`.
 How: Performs static text scans instead of importing the whole app (avoids
 side effects). Reads selective files and searches for required tokens.
 
 Connects to:
     - app.py: Verifies `offline_guard.enable()` invocation
-    - config.py: Ensures single `DB_PATH` definition (no alternates)
+    - config/__init__.py: Ensures single `DB_PATH` definition in the canonical config package
     - docs/copilot_diagnostics.md: Confirms existence + required headers
 """
 
@@ -49,21 +48,17 @@ def check_offline_guard():
 def check_single_db():
     """Validate a single DB_PATH assignment referencing clever.db.
 
-    Why: Original regex assumed a simple quoted literal assignment which broke
-    when the project moved to an environment override pattern using
-    os.environ.get("CLEVER_DB_PATH", str(ROOT_DIR / "clever.db")). We loosen
-    detection to still enforce single definition and correct filename without
-    over-parsing Python semantics.
-    Where: Called inside diagnostics pre-flight to prevent unnoticed drift in
-    storage location (single DB rule).
-    How: Scans config.py for lines starting with 'DB_PATH' (ignoring leading
+    Why: Enforces the single-database rule so Clever's memory stays coherent
+    and no shadow databases are accidentally created.
+    Where: Validates config/__init__.py, the canonical configuration package entry point.
+    How: Scans config/__init__.py for lines starting with 'DB_PATH' (ignoring leading
     whitespace) and counts them; validates 'clever.db' substring is present on
     that line. Avoids executing code or AST parsing to remain trivial & offline.
     """
-    config_text = (ROOT / "config.py").read_text(encoding="utf-8", errors="ignore").splitlines()
+    config_text = (ROOT / "config" / "__init__.py").read_text(encoding="utf-8", errors="ignore").splitlines()
     db_lines = [ln for ln in config_text if re.match(r"^\s*DB_PATH\s*=", ln)]
     if not db_lines:
-        fail("DB_PATH not defined in config.py")
+        fail("DB_PATH not defined in config/__init__.py")
         return
     if len(db_lines) > 1:
         fail("Multiple DB_PATH assignments detected")

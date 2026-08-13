@@ -11,7 +11,7 @@ side effects). Reads selective files and searches for required tokens.
 
 Connects to:
     - app.py: Verifies `offline_guard.enable()` invocation
-    - config.py: Ensures single `DB_PATH` definition (no alternates)
+    - config/__init__.py: Ensures single `DB_PATH` definition in the canonical config package
     - docs/copilot_diagnostics.md: Confirms existence + required headers
     - tests/test_diagnostics.py: Test that loads and calls main()
 """
@@ -58,14 +58,14 @@ def check_single_db() -> None:
 
     Why: Enforces the single-database rule so Clever's memory stays coherent
     and no shadow databases are accidentally created.
-    Where: Validates config.py, the centralised configuration source.
-    How: Scans config.py for lines matching DB_PATH assignment and verifies
+    Where: Validates config/__init__.py, the canonical configuration package entry point.
+    How: Scans config/__init__.py for lines matching DB_PATH assignment and verifies
     exactly one exists and that it references clever.db.
     """
-    config_text = (ROOT / "config.py").read_text(encoding="utf-8", errors="ignore").splitlines()
+    config_text = (ROOT / "config" / "__init__.py").read_text(encoding="utf-8", errors="ignore").splitlines()
     db_lines = [ln for ln in config_text if re.match(r"^\s*DB_PATH\s*=", ln)]
     if not db_lines:
-        fail("DB_PATH not defined in config.py")
+        fail("DB_PATH not defined in config/__init__.py")
         return
     if len(db_lines) > 1:
         fail("Multiple DB_PATH assignments detected")
